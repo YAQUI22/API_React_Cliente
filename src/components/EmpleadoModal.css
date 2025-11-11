@@ -1,0 +1,151 @@
+/* EmpleadoModal.css - Estilos para el modal de empleados */
+
+.empleado-modal .modal-content {
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  animation: slideInDown 0.4s ease-out;
+}
+
+.modal-header-custom {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1.5rem 2rem;
+  border-bottom: none;
+}
+
+.modal-header-custom .modal-title {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.modal-header-custom .btn-close {
+  filter: brightness(0) invert(1);
+  opacity: 0.8;
+}
+
+.modal-header-custom .btn-close:hover {
+  opacity: 1;
+}
+
+.empleado-modal .modal-body {
+  padding: 2rem;
+}
+
+.empleado-modal .form-label {
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.empleado-modal .form-control {
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.empleado-modal .form-control:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+
+.empleado-modal .form-control::placeholder {
+  color: #a0aec0;
+}
+
+.empleado-modal .text-danger {
+  color: #f56565;
+}
+
+.empleado-modal .btn {
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.empleado-modal .btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.empleado-modal .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+.empleado-modal .btn-primary:disabled {
+  background: #cbd5e0;
+  box-shadow: none;
+  transform: none;
+}
+
+.empleado-modal .btn-secondary {
+  background-color: #e2e8f0;
+  color: #2d3748;
+}
+
+.empleado-modal .btn-secondary:hover {
+  background-color: #cbd5e0;
+  transform: translateY(-2px);
+}
+
+.empleado-modal .alert {
+  border: none;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  animation: slideInDown 0.3s ease-out;
+}
+
+.empleado-modal .alert-success {
+  background-color: #c6f6d5;
+  color: #22543d;
+}
+
+.empleado-modal .alert-danger {
+  background-color: #fed7d7;
+  color: #742a2a;
+}
+
+/* Animaciones */
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Gap entre botones */
+.d-flex.gap-2 {
+  gap: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .empleado-modal .modal-body {
+    padding: 1.5rem;
+  }
+
+  .modal-header-custom {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .modal-header-custom .modal-title {
+    font-size: 1.25rem;
+  }
+
+  .empleado-modal .row .col-md-6 {
+    margin-bottom: 0.5rem;
+  }
+}
