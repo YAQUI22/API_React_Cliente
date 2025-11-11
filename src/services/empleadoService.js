@@ -49,3 +49,9 @@ export const deleteEmpleado = async (id) => {
  const response = await api.delete(`/apiv2/empleado/${id}`);
  return response.data;
 };
+
+// Obtiene todas las sucursales
+export const getSucursales = async () => {
+ const response = await api.get("/apiv2/sucursal");
+ return response.data;
+};

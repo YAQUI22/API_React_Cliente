@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getEmpleadosConSucursal } from "./services/empleadoService";
+import { getEmpleados, getSucursales } from "./services/empleadoService";
 import EmpleadoModal from "./components/EmpleadoModal";
 import EmpleadoTable from "./components/EmpleadoTable";
 import { Button, Container } from "react-bootstrap";
@@ -18,13 +18,29 @@ function App() {
     setLoading(true);
     setError(null);
     try {
-      const data = await getEmpleadosConSucursal();
-      console.log("Datos recibidos del backend:", data);
-      if (data && data.length > 0) {
-        console.log("Primer empleado:", data[0]);
-        console.log("Campos disponibles:", Object.keys(data[0]));
+      // Obtener empleados y sucursales en paralelo
+      const [empleadosData, sucursalesData] = await Promise.all([
+        getEmpleados(),
+        getSucursales()
+      ]);
+
+      // Crear un mapa de sucursales para búsqueda rápida
+      const sucursalesMap = {};
+      if (Array.isArray(sucursalesData)) {
+        sucursalesData.forEach(sucursal => {
+          sucursalesMap[sucursal.idsucursal] = sucursal.nombre;
+        });
       }
-      setEmpleados(Array.isArray(data) ? data : []);
+
+      // Combinar empleados con nombres de sucursales
+      const empleadosConSucursal = Array.isArray(empleadosData)
+        ? empleadosData.map(empleado => ({
+            ...empleado,
+            sucursal_nombre: sucursalesMap[empleado.idsucursal] || 'Sin sucursal'
+          }))
+        : [];
+
+      setEmpleados(empleadosConSucursal);
     } catch (err) {
       if (err.response) {
         setError(`Error servidor: ${err.response.status} ${err.response.statusText}`);
