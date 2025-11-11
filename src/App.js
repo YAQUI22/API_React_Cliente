@@ -19,6 +19,11 @@ function App() {
     setError(null);
     try {
       const data = await getEmpleadosConSucursal();
+      console.log("Datos recibidos del backend:", data);
+      if (data && data.length > 0) {
+        console.log("Primer empleado:", data[0]);
+        console.log("Campos disponibles:", Object.keys(data[0]));
+      }
       setEmpleados(Array.isArray(data) ? data : []);
     } catch (err) {
       if (err.response) {

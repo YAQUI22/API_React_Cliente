@@ -89,17 +89,17 @@ function EmpleadoTable({ empleados, loading, error, onEdit, onRefresh }) {
                   <i className="bi bi-person-fill me-2 text-primary"></i>
                   {empleado.empleado_nombre}
                 </td>
-                <td>{empleado.empleado_apellidos || 'N/A'}</td>
+                <td>{empleado.empleado_apellidos || empleado.apellidos || 'N/A'}</td>
                 <td>
                   <i className="bi bi-telephone me-1"></i>
-                  {empleado.empleado_telefonos || 'N/A'}
+                  {empleado.empleado_telefonos || empleado.empleado_telefono || empleado.telefono || 'N/A'}
                 </td>
-                <td>{empleado.empleado_direccion || 'N/A'}</td>
+                <td>{empleado.empleado_direccion || empleado.direccion || 'N/A'}</td>
                 <td>
                   <Badge bg="success" className="px-3 py-2">
                     <i className="bi bi-currency-dollar me-1"></i>
-                    {empleado.empleado_salario_base
-                      ? parseFloat(empleado.empleado_salario_base).toLocaleString('es-ES', {minimumFractionDigits: 2, maximumFractionDigits: 2})
+                    {(empleado.empleado_salario_base || empleado.salario_base)
+                      ? parseFloat(empleado.empleado_salario_base || empleado.salario_base).toLocaleString('es-ES', {minimumFractionDigits: 2, maximumFractionDigits: 2})
                       : 'N/A'}
                   </Badge>
                 </td>
