@@ -25,15 +25,22 @@ function EmpleadoModal({ show, handleClose, empleado, onSuccess }) {
         setError(null);
         try {
           // Obtener datos completos del empleado desde el backend
-          const empleadoCompleto = await getEmpleadoById(empleado.idempleado);
-          setFormData({
-            nombres: String(empleadoCompleto.nombres || ""),
-            apellidos: String(empleadoCompleto.apellidos || ""),
-            telefono: String(empleadoCompleto.telefono || ""),
-            direccion: String(empleadoCompleto.direccion || ""),
-            salario_base: String(empleadoCompleto.salario_base || ""),
-            idsucursal: String(empleadoCompleto.idsucursal || "")
-          });
+          const response = await getEmpleadoById(empleado.idempleado);
+          // El backend retorna un array, tomamos el primer elemento
+          const empleadoCompleto = Array.isArray(response) ? response[0] : response;
+
+          if (empleadoCompleto) {
+            setFormData({
+              nombres: String(empleadoCompleto.nombres || ""),
+              apellidos: String(empleadoCompleto.apellidos || ""),
+              telefono: String(empleadoCompleto.telefono || ""),
+              direccion: String(empleadoCompleto.direccion || ""),
+              salario_base: String(empleadoCompleto.salario_base || ""),
+              idsucursal: String(empleadoCompleto.idsucursal || "")
+            });
+          } else {
+            setError("No se encontraron datos del empleado.");
+          }
         } catch (err) {
           console.error("Error al cargar empleado:", err);
           setError("No se pudieron cargar los datos del empleado.");

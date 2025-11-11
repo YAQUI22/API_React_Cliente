@@ -68,7 +68,6 @@ function EmpleadoTable({ empleados, loading, error, onEdit, onRefresh }) {
         <Table hover className="empleado-table">
           <thead>
             <tr>
-              <th>ID</th>
               <th>Nombre</th>
               <th>Apellidos</th>
               <th>Teléfonos</th>
@@ -82,9 +81,6 @@ function EmpleadoTable({ empleados, loading, error, onEdit, onRefresh }) {
           <tbody>
             {empleados.map((empleado) => (
               <tr key={empleado.idempleado}>
-                <td>
-                  <Badge bg="secondary">{empleado.idempleado}</Badge>
-                </td>
                 <td className="fw-semibold">
                   <i className="bi bi-person-fill me-2 text-primary"></i>
                   {empleado.nombres}
