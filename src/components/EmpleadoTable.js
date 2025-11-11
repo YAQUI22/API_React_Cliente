@@ -69,7 +69,12 @@ function EmpleadoTable({ empleados, loading, error, onEdit, onRefresh }) {
           <thead>
             <tr>
               <th>ID</th>
-              <th>Nombre del Empleado</th>
+              <th>Nombre</th>
+              <th>Apellidos</th>
+              <th>Teléfonos</th>
+              <th>Dirección</th>
+              <th>Salario Base</th>
+              <th>ID Sucursal</th>
               <th>Sucursal</th>
               <th className="text-center">Acciones</th>
             </tr>
@@ -83,6 +88,23 @@ function EmpleadoTable({ empleados, loading, error, onEdit, onRefresh }) {
                 <td className="fw-semibold">
                   <i className="bi bi-person-fill me-2 text-primary"></i>
                   {empleado.empleado_nombre}
+                </td>
+                <td>{empleado.empleado_apellidos || 'N/A'}</td>
+                <td>
+                  <i className="bi bi-telephone me-1"></i>
+                  {empleado.empleado_telefonos || 'N/A'}
+                </td>
+                <td>{empleado.empleado_direccion || 'N/A'}</td>
+                <td>
+                  <Badge bg="success" className="px-3 py-2">
+                    <i className="bi bi-currency-dollar me-1"></i>
+                    {empleado.empleado_salario_base
+                      ? parseFloat(empleado.empleado_salario_base).toLocaleString('es-ES', {minimumFractionDigits: 2, maximumFractionDigits: 2})
+                      : 'N/A'}
+                  </Badge>
+                </td>
+                <td>
+                  <Badge bg="warning" text="dark">{empleado.idsucursal}</Badge>
                 </td>
                 <td>
                   <Badge bg="info" className="px-3 py-2">
